@@ -38,19 +38,11 @@
 			end
 		end
 
-		def move_piece(piece, position, board = {one: [1,2,3,4], two: [], three: []})
+		def move_piece(piece, selection, board = {one: [1,2,3,4], two: [], three: []})
 			#Action for moving piece from one has index to another
-			if board[:one].include?(piece)
-				board[:one] -= [piece]
-				board[position] += [piece]
-			elsif board[:two].include?(piece)
-				board[:two] -= [piece]
-				board[position] += [piece]
-			elsif board[:three].include?(piece)
-				board[:three] -= [piece]
-				board[position] += [piece]
-			end
-			board
+				board[find_piece(piece, board)] -= [piece]
+				board[selection] += [piece]
+				board
 		end
 
 		def main_menu
