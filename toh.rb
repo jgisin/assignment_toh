@@ -43,16 +43,22 @@ class Toh
 		while board[:three].length != 4
 			puts "Please select which piece to move"
 			piece = gets.chomp.to_i
-				if piece > 4 || piece < 1
-					puts "Please select again. The number must be from 1-4"
-				else
+				if piece < 5
 					puts "Please select where to move the piece"
 					selection = gets.chomp.to_i
 					if selection > 3 || selection < 1
-						puts "Please select again. The number must be from 1-3"
+						puts "***** Please select again. The position must be from 1-3 *****"
+						render
 					else
-						render(move_piece(piece, get_position(selection), board))
+						if board[get_position(selection)].sort.first == nil || piece < board[get_position(selection)].sort.first 
+							render(move_piece(piece, get_position(selection), board))
+						else
+							puts "***** Cant move big piece on smaller piece *****"
+						end
 					end
+				else
+					puts "***** Please select again. The piece must be from 1-4 *****"
+					render
 				end
 		end
 		puts "Congrats you win!!"
