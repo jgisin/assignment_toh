@@ -19,7 +19,6 @@ class Toh
 				return :two
 			when 3
 				return :three
-
 	end
 			
 	end
@@ -44,9 +43,17 @@ class Toh
 		while board[:three].length != 4
 			puts "Please select which piece to move"
 			piece = gets.chomp.to_i
-			puts "Please select where to move the piece"
-			get_position(selection = gets.chomp.to_i)
-			render(move_piece(piece, :three, board))
+				if piece > 4 || piece < 1
+					puts "Please select again. The number must be from 1-4"
+				else
+					puts "Please select where to move the piece"
+					selection = gets.chomp.to_i
+					if selection > 3 || selection < 1
+						puts "Please select again. The number must be from 1-3"
+					else
+						render(move_piece(piece, get_position(selection), board))
+					end
+				end
 		end
 		puts "Congrats you win!!"
 	end
